@@ -1,0 +1,263 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap");
+
+:root {
+  --heading-style: "Playfair Display", serif;
+  --text-style: "Poppins", sans-serif;
+  --bg-color: #eef2e6;
+  --header-color: #1c6758;
+  --btn-color: #3d8361;
+  --input-color: #d6cda4;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--header-color);
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10rem auto;
+}
+
+.main {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  width: 600px;
+  position: relative;
+  background-color: var(--input-color);
+  box-shadow: -1px 1px 19px 6px rgba(0, 0, 0, 0.49);
+  -webkit-box-shadow: -1px 1px 19px 6px rgba(0, 0, 0, 0.49);
+  -moz-box-shadow: -1px 1px 19px 6px rgba(0, 0, 0, 0.49);
+}
+
+.main h1 {
+  text-align: center;
+  font-family: var(--heading-style);
+  margin-bottom: 2rem;
+}
+
+.container .main label {
+  display: block;
+  font-family: var(--text-style);
+  margin-bottom: 0.5rem;
+}
+
+.container .main input {
+  padding: 0.8rem;
+  border-radius: 0.3rem 0 0 0.3rem;
+  border: none;
+  width: 90%;
+  margin-bottom: 0.3rem;
+  outline-color: var(--btn-color);
+  background-color: var(--bg-color);
+}
+
+.container .main #btn {
+  padding: 0.5rem 0.1rem;
+  border-radius: 0 0.3rem 0.3rem 0;
+  border: none;
+  cursor: pointer;
+  outline-color: var(--btn-color);
+  background-color: green;
+  position: absolute;
+  font-size: 1.4rem;
+  border-left: 1px solid black;
+}
+
+.container .main #error {
+  color: crimson;
+  font-family: var(--text-style);
+  font-weight: 100;
+  display: none;
+}
+
+.container .main .output {
+  background-color: var(--bg-color);
+  font-family: var(--text-style);
+  border-radius: 0.3rem;
+  font-weight: 300;
+  font-size: 1.1rem;
+  padding: 0.4rem;
+  margin-top: 1rem;
+  width: 83%;
+  overflow-wrap: break-word;
+  position: static;
+}
+
+.container .main .output .delete {
+  border: none;
+  cursor: pointer;
+  color: white;
+  font-size: 1.4rem;
+  position: absolute;
+  right: 1rem;
+  background: transparent;
+}
+
+.completed {
+  text-decoration: line-through;
+  background-color: transparent;
+  color: #808080;
+  position: absolute;
+  border: none;
+  right: 3.5rem;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+.container .main .modal .modal-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5rem auto;
+  background-color: orange;
+  border-radius: 0.3rem;
+  color: black;
+  font-size: 1.2rem;
+  font-family: var(--text-style);
+  font-weight: 100;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-width: 450px;
+  max-height: 3rem;
+  margin: auto;
+  z-index: 3;
+  animation: flipInX 1s ease-in-out;
+}
+
+.container .main .modal .modal-content p {
+  font-size: large;
+  font-family: var(--text-style);
+  font-weight: 400;
+}
+.container .main .modal .modal-content span {
+  z-index: 9;
+  font-weight: bold;
+  font-size: 2rem;
+  margin-right: 0.8rem;
+  color: red;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    color: rgb(108, 53, 64);
+  }
+}
+
+.container .main .modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  backdrop-filter: blur(1px);
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+@media screen and (max-width: 500px) {
+  body {
+    background-color: var(--header-color);
+  }
+
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem auto;
+  }
+
+  .main {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    width: 100%;
+    background-color: var(--input-color);
+    box-shadow: -1px 1px 19px 6px rgba(0, 0, 0, 0.49);
+    -webkit-box-shadow: -1px 1px 19px 6px rgba(0, 0, 0, 0.49);
+    -moz-box-shadow: -1px 1px 19px 6px rgba(0, 0, 0, 0.49);
+  }
+
+  .main h1 {
+    text-align: center;
+    font-family: var(--heading-style);
+    margin-bottom: 2rem;
+  }
+
+  .container .main label {
+    display: block;
+    font-family: var(--text-style);
+    margin-bottom: 0.5rem;
+  }
+
+  .container .main input {
+    padding: 0.8rem;
+    border-radius: 0.3rem 0 0 0.3rem;
+    border: none;
+    width: 90%;
+    margin-bottom: 0.3rem;
+    outline-color: var(--btn-color);
+    background-color: var(--bg-color);
+  }
+
+  .container .main #btn {
+    padding: 0.5rem 0.1rem;
+    border-radius: 0 0.3rem 0.3rem 0;
+    border: none;
+    cursor: pointer;
+    outline-color: var(--btn-color);
+    background-color: var(--btn-color);
+    position: absolute;
+    font-size: 1.4rem;
+    border-left: 1px solid black;
+  }
+
+  .container .main #error {
+    color: crimson;
+    font-family: var(--text-style);
+    font-weight: 100;
+    display: none;
+  }
+
+  .container .main .output {
+    background-color: var(--bg-color);
+    font-family: var(--text-style);
+    width: 80%;
+    border-radius: 0.3rem;
+    font-weight: 300;
+    font-size: 1.1rem;
+    padding: 0.4rem;
+    margin-top: 1rem;
+    overflow-wrap: break-word;
+    position: static;
+  }
+
+  .container .main .output .delete {
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-size: 1.4rem;
+    position: absolute;
+    right: 0.2rem;
+    background: transparent;
+  }
+
+  .completed {
+    text-decoration: line-through;
+    background-color: transparent;
+    color: #808080;
+    position: absolute;
+    border: none;
+    right: 2.7rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+  }
+}
