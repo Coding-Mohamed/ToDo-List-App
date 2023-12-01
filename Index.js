@@ -7,7 +7,7 @@ const apiKey = "c30d6374-b623-4c3b-a29b-38a9cba98201";
 
 btnElement.addEventListener("click", function (e) {
   e.preventDefault();
-  const task = inputElement.value.trim(); // Trim the input value to remove leading and trailing spaces
+  const task = inputElement.value.trim();
   if (task === "") {
     errorElement.style.display = "block";
     setTimeout(function () {
@@ -16,27 +16,27 @@ btnElement.addEventListener("click", function (e) {
     return;
   }
   saveTask(task);
-  inputElement.value = ""; // Clear input
+  inputElement.value = "";
 });
 
-// Function to create a new task element
+// New task element
 function createTaskElement(task) {
   const newTask = document.createElement("div");
   newTask.classList.add("output");
   newTask.innerText = task.title.trim();
-  mainElement.appendChild(newTask); // Append new task to the main element
+  mainElement.appendChild(newTask);
 
   const deleteBtn = document.createElement("button");
   deleteBtn.classList.add("delete");
   deleteBtn.innerHTML =
     '<i class="fa-solid fa-trash-can fa-xl" style="color: #c81e40;"></i>';
-  newTask.appendChild(deleteBtn); // Append delete button to the new task
+  newTask.appendChild(deleteBtn);
 
   deleteBtn.addEventListener("click", function () {
     if (!newTask.classList.contains("completed")) {
       const modal = document.querySelector(".modal");
       if (modal) {
-        return; // Modal already exists, do nothing
+        return;
       }
 
       const modalElement = document.createElement("div");
@@ -55,14 +55,15 @@ function createTaskElement(task) {
       });
 
       setTimeout(function () {
-        modalElement.remove(); // Remove the modal after 30 seconds
+        modalElement.remove();
       }, 10000);
 
       return;
     }
 
     newTask.remove();
-    // DELETE method for removing the task from the database
+
+    // Removing the task from the database.
     fetch(`${apiUrl}/${task._id}?apikey=${apiKey}`, {
       method: "DELETE",
     })
@@ -79,30 +80,30 @@ function createTaskElement(task) {
   editBtn.classList.add("completed");
   editBtn.innerHTML =
     '<i class="fa-solid fa-check fa-xl" style="color:#127f10;"></i>';
-  newTask.appendChild(editBtn); // Append edit button to the new task
+  newTask.appendChild(editBtn);
 
   editBtn.addEventListener("click", function () {
     if (newTask.classList.contains("completed")) {
       newTask.classList.remove("completed");
-      editBtn.querySelector("i").style.color = "#127f10"; // Change the color of the icon
-      updateTaskStatus(task._id, false); // Update "completed" status in the database
+      editBtn.querySelector("i").style.color = "#127f10";
+      updateTaskStatus(task._id, false);
     } else {
       newTask.classList.add("completed");
-      editBtn.querySelector("i").style.color = "#808080"; // Change the color of the icon
-      updateTaskStatus(task._id, true); // Update "completed" status in the database
+      editBtn.querySelector("i").style.color = "#808080";
+      updateTaskStatus(task._id, true);
     }
   });
 
-  // Check if the task is completed and update the UI accordingly
+  // Checking if the task is completed.
   if (task.completed) {
     newTask.classList.add("completed");
-    editBtn.querySelector("i").style.color = "#808080"; // Change the color of the icon
+    editBtn.querySelector("i").style.color = "#808080";
   }
 
   return newTask;
 }
 
-// GET method to fetch data from the database
+// GET method to fetch data from the database.
 fetch(`${apiUrl}?apikey=${apiKey}`)
   .then((response) => response.json())
   .then((data) => {
@@ -123,7 +124,6 @@ function saveTask(task) {
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log("Success:", data);
       const newTask = createTaskElement(data);
       mainElement.appendChild(newTask);
     })
@@ -142,9 +142,7 @@ function updateTaskStatus(taskId, completed) {
     body: JSON.stringify({ completed: completed }),
   })
     .then((response) => response.json())
-    .then((data) => {
-      console.log("Success:", data);
-    })
+    .then((data) => {})
     .catch((error) => {
       console.error("Error:", error);
     });
